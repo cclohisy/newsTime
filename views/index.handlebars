@@ -1,7 +1,12 @@
-<h1> Hi! Index hbs loaded</h1>
+
 
 {{#each article}}
-<h2>{{headline}}</h2>
-<h4>{{summary}}</h4>
+<div class="card mb-4">
+    <h4 class="card-header">{{headline}}<button class= "btn float-right saveBtn" article-id="{{_id}}">SAVE</button></h4>
+    <div class="card-body">
+        <p class="card-text">{{summary}}</p>
+        <a href="http://www.bbc.com/{{link}}" target="#" class="btn btn-dark">Read More</a>
+    </div>
+</div>
 
 {{/each}}

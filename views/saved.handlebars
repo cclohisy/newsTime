@@ -1,0 +1,15 @@
+<h4>saved page linked</h4>
+
+{{#each article}}
+<div class="card mb-4">
+    <h4 class="card-header">{{headline}}
+        <button class="btn btn-warning float-right commentsBtn">Article Comments</button>
+        <button class="btn btn-warning float-right deleteArticle">Delete Me</button>
+    </h4>
+    <div class="card-body">
+        <p class="card-text">{{summary}}</p>
+        <a href="http://www.bbc.com/{{link}}" target="#" class="btn btn-dark">Read More</a>
+    </div>
+</div>
+
+{{/each}}

@@ -27,6 +27,10 @@ module.exports = function (app) {
 
                 //grab link
                 result.link = $(this).children("a").attr("href")
+
+                //grab image src, or at least try :).... NOT WORKING?
+                result.image = $(this).children("img").attr("src")
+                
                 db.Article.create(result)
                     .then(function (dbArticle) {
 
@@ -59,7 +63,7 @@ module.exports = function (app) {
             }).catch(function (err) { res.json(err) })
     })
     //update exsisting article to saved: true in db
-    app.post("article/save/:id", function (req, res) {
+    app.put("/article/save/:id", function (req, res) {
         db.Article.update({
             _id: req.params.id
         },
@@ -76,9 +80,8 @@ module.exports = function (app) {
                 res.json(savedData)
             }).catch(function(err){res.json(err)})
     })
-
     //route to "delete" article from saved (saved: falsee)
-    app.post("/article/delete/:id", function (req, res) {
+    app.put("/article/delete/:id", function (req, res) {
         db.Article.update({
             _id: req.params.id
         },
@@ -88,4 +91,6 @@ module.exports = function (app) {
                 res.json(updatedArticle)
             }).catch(function(err){res.json(err)})
     })
+
+
 }

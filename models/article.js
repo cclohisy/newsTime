@@ -24,6 +24,11 @@ var ArticleSchema = new Schema({
         type: String,
         required: true
     },
+    //not working
+    image :{
+        type: String,
+        required:false
+    },
     //boolean store true if book saved 
     saved: {
         type: Boolean,

@@ -1,0 +1,18 @@
+body{
+    background-image: url("https://thumbs.dreamstime.com/b/newspaper-background-37806364.jpg");
+    /* rgba(100, 89, 89, 0.932); */
+    color:black;
+}
+
+.saveBtn{
+    background-color: rgb(46, 46, 116);
+    border-style: none;
+    color: ghostwhite
+}
+
+.saveBtn:hover{
+    background-color: ghostwhite;
+    border-style: solid;
+    border:  rgb(46, 46, 116);
+    color:  rgb(46, 46, 116);
+}
