@@ -49,4 +49,16 @@ module.exports = function (app) {
                 res.json(err)
             })
     })
+//find  a specific article 
+app.get("/articles/:id", function(req, res){
+    db.Article.findOne({_id:req.params.id})
+    .then(function(data){res.json(data)
+    }).catch(function(err){res.json(err)})
+})
+    //post exsisting article to saved 
+    app.post("/saved/:id", function(req,res){
+
+        
+    })
+    //get saved articles and display... maybe html route? - if using handlebars
 }
