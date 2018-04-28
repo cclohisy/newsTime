@@ -4,7 +4,7 @@
 var mongoose = require("mongoose")
 
 //save mogoose.Schema to schema var
-var Schema = mongoos.Schema
+var Schema = mongoose.Schema
 
 var ArticleSchema = new Schema({
     //article headline - must be unique
