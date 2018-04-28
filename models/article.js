@@ -24,6 +24,11 @@ var ArticleSchema = new Schema({
         type: String,
         required: true
     },
+    //boolean store true if book saved 
+    saved: {
+        type: boolean,
+        default: false
+    },
     //array of comments object ids... link to comms model
     //will populate Article with comments
     comments:[
