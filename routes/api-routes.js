@@ -1,7 +1,10 @@
 //import Axios from "axios"; auto added again... 
+var db = require("../models");
 
 module.exports = function (app) {
 
+    //test rout4e for scraping - storing in DB 
+    //this should be in a click handler... only scrape on click 
     app.get("/scrape", function (req, res) {
         //grab html 
         axios.get("http://www.bbc.com/news").then(function (response) {
@@ -36,4 +39,14 @@ module.exports = function (app) {
         })
     })
 
+    //get articles 
+    app.get("/articles", function (req, res) {
+        db.Article.find({
+        }).then(
+            function (dbArticle) {
+                res.json(dbArticle)
+            }).catch(function (err) {
+                res.json(err)
+            })
+    })
 }
