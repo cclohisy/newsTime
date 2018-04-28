@@ -42,7 +42,7 @@ app.use(logger("dev"));
 // api routes
 require("./routes/api-routes.js")(app)
 // //html routes
-// require("./routes/html-routes")(app)
+require("./routes/html-routes.js")(app)
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/mongoHeadlines");
