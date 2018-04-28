@@ -26,7 +26,7 @@ var ArticleSchema = new Schema({
     },
     //boolean store true if book saved 
     saved: {
-        type: boolean,
+        type: Boolean,
         default: false
     },
     //array of comments object ids... link to comms model

@@ -1,5 +1,7 @@
 //import Axios from "axios"; auto added again... 
 var db = require("../models");
+var axios = require("axios"); //- not sure what this is doing...
+var cheerio = require("cheerio");
 
 module.exports = function (app) {
 
@@ -56,14 +58,34 @@ module.exports = function (app) {
                 res.json(data)
             }).catch(function (err) { res.json(err) })
     })
-    //update exsisting article to saved 
-    app.post("/articles/:id", function (req, res) {
+    //update exsisting article to saved: true in db
+    app.post("article/save/:id", function (req, res) {
         db.Article.update({
-            _id : req.params.id
+            _id: req.params.id
         },
-    {$set: {saved:true}})
-
-
+            {
+                $set: { saved: true }
+            }).then(function(updatedArticle){
+                res.json(updatedArticle)
+            }).catch(function(err){res.json(err)})
     })
     //get saved articles and display... maybe html route? - if using handlebars
+    app.get("/saved", function (req, res) {
+        db.Article.find({ saved: true }).then(
+            function (savedData) {
+                res.json(savedData)
+            }).catch(function(err){res.json(err)})
+    })
+
+    //route to "delete" article from saved (saved: falsee)
+    app.post("/article/delete/:id", function (req, res) {
+        db.Article.update({
+            _id: req.params.id
+        },
+            {
+                $set: { saved: false }
+            }).then(function(updatedArticle){
+                res.json(updatedArticle)
+            }).catch(function(err){res.json(err)})
+    })
 }
