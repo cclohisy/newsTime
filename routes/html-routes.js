@@ -27,14 +27,14 @@ module.exports = function (app) {
                 res.json(err)
             })
     })
-    app.get("/saved", function(req,res){
-        db.Article.find({saved: true}).then(
-            function(data){
+    app.get("/saved", function (req, res) {
+        db.Article.find({ saved: true }).then(
+            function (data) {
                 var savedArticles = {
                     article: data
                 }
                 console.log(savedArticles)
                 res.render("saved", savedArticles)
-            }).catch(function(err){res.json(err)})
+            }).catch(function (err) { res.json(err) })
     })
 }

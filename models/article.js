@@ -29,7 +29,7 @@ var ArticleSchema = new Schema({
         type: String,
         required:false
     },
-    //boolean store true if book saved 
+    //boolean store true if article saved 
     saved: {
         type: Boolean,
         default: false

@@ -74,7 +74,7 @@ module.exports = function (app) {
             }).catch(function(err){res.json(err)})
     })
     //get saved articles and display... maybe html route? - if using handlebars
-    app.get("/saved", function (req, res) {
+    app.get("article/saved", function (req, res) {
         db.Article.find({ saved: true }).then(
             function (savedData) {
                 res.json(savedData)
