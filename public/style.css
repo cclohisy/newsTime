@@ -10,9 +10,13 @@ body{
     color: ghostwhite
 }
 
-.saveBtn:hover{
-    background-color: ghostwhite;
-    border-style: solid;
-    border:  rgb(46, 46, 116);
-    color:  rgb(46, 46, 116);
+
+.deleteArticle{
+    background-color: firebrick;
+    color: ghostwhite
+}
+
+.commentsBtn{
+    background-color: rgb(32, 129, 129);
+    color: ghostwhite
 }
