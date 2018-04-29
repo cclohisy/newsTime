@@ -45,7 +45,7 @@ module.exports = function (app) {
         })
     })
 
-    //get articles 
+    //get articles that have been scraped
     app.get("/articles", function (req, res) {
         db.Article.find({
         }).then(
@@ -115,9 +115,9 @@ module.exports = function (app) {
         db.Article.find(
             { _id: req.params.id }
         ).populate("comments")
-        .then(function(articleData){
-            res.json(articleData)
-        }).catch(function(err){res.json(err)})
+            .then(function (articleData) {
+                res.json(articleData)
+            }).catch(function (err) { res.json(err) })
     })
     //create/post comment w/o article attachment
     // app.post()

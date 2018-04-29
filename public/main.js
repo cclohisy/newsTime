@@ -1,6 +1,12 @@
 console.log("js linked")
 
 $(function () {
+    //onclick of scrape button
+    $("#scrapeBtn").on("click", function(event){
+        event.preventDefault()
+        //ajax call to /scrape
+        
+    })
     //onclick of save buttonn...
     $(".saveBtn").on("click", function (event) {
         event.preventDefault()
@@ -61,8 +67,7 @@ $(function () {
                     deleteBtn.text("X")
                     listItem.append(deleteBtn)
                     listItem.append(comment)
-                    $("#commentList").append(listItem)
-                    
+                    $("#commentList").append(listItem)                    
                 }
 
             })
