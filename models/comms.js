@@ -8,8 +8,7 @@ var Schema = mongoose.Schema
 
 var CommSchema = new Schema({
     content :{
-        type: String
-        //set characte limit maybe,..... 
+     //set characte limit maybe,..... 
     }
 })
 

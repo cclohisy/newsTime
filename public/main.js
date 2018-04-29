@@ -40,6 +40,7 @@ $(function () {
         event.preventDefault()//? still need to be doing this?
         console.log("comment click workin")
         //get and store id of article var
+        
         //ajax get exsisting comments... 
 
         //display results in commentModal

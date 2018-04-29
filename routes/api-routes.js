@@ -93,7 +93,7 @@ module.exports = function (app) {
     })
 
     //post a comment to an article...
-    app.post("article/comments/:id", function (req, res) {
+    app.post("/article/comments/:id", function (req, res) {
         req.body = {
             content: "hey"
         }
@@ -112,9 +112,14 @@ module.exports = function (app) {
     })
     //get comments for specific article
     app.get("/article/comments/:id", function (req, res) {
-        db.Article.findOne(
+        db.Article.find(
             { _id: req.params.id }
         ).populate("comments")
+        .then(function(articleData){
+            res.json(articleData)
+        }).catch(function(err){res.json(err)})
     })
+    //create/post comment w/o article attachment
+    // app.post()
 
 }
