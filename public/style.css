@@ -11,7 +11,8 @@ body{
 }
 
 
-.deleteArticle{
+.deleteArticle,
+.deleteCommBtn{
     background-color: firebrick;
     color: ghostwhite
 }

@@ -40,7 +40,7 @@ var ArticleSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             //references what is set up on line 40 here but in comms model
-            ref: "Comment"
+            ref: "Comments"
     }
 ]
     //extras.....tbfd

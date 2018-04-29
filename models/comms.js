@@ -13,6 +13,6 @@ var CommSchema = new Schema({
     }
 })
 
-var Comm = mongoose.model("Comment", CommSchema)
+var Comm = mongoose.model("Comments", CommSchema)
 
 module.exports = Comm

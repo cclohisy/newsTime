@@ -30,7 +30,7 @@ module.exports = function (app) {
 
                 //grab image src, or at least try :).... NOT WORKING?
                 result.image = $(this).children("img").attr("src")
-                
+
                 db.Article.create(result)
                     .then(function (dbArticle) {
 
@@ -69,16 +69,16 @@ module.exports = function (app) {
         },
             {
                 $set: { saved: true }
-            }).then(function(updatedArticle){
+            }).then(function (updatedArticle) {
                 res.json(updatedArticle)
-            }).catch(function(err){res.json(err)})
+            }).catch(function (err) { res.json(err) })
     })
     //get saved articles and display... maybe html route? - if using handlebars
-    app.get("article/saved", function (req, res) {
+    app.get("/article/saved", function (req, res) {
         db.Article.find({ saved: true }).then(
             function (savedData) {
                 res.json(savedData)
-            }).catch(function(err){res.json(err)})
+            }).catch(function (err) { res.json(err) })
     })
     //route to "delete" article from saved (saved: falsee)
     app.put("/article/delete/:id", function (req, res) {
@@ -87,10 +87,34 @@ module.exports = function (app) {
         },
             {
                 $set: { saved: false }
-            }).then(function(updatedArticle){
+            }).then(function (updatedArticle) {
                 res.json(updatedArticle)
-            }).catch(function(err){res.json(err)})
+            }).catch(function (err) { res.json(err) })
     })
 
+    //post a comment to an article...
+    app.post("article/comments/:id", function (req, res) {
+        req.body = {
+            content: "hey"
+        }
+        db.Comment.create(req.body).then(
+            function (commData) {
+                return db.dbArticle.findOneAndUpdate({
+                    _id: req.params.id
+                },
+                    {
+                        $push: { comments: commData._id }
+                    },
+                    { new: true })
+            }).then(function (articleData) {
+                res.json(articleData)
+            }).catch(function (err) { res.json(err) })
+    })
+    //get comments for specific article
+    app.get("/article/comments/:id", function (req, res) {
+        db.Article.findOne(
+            { _id: req.params.id }
+        ).populate("comments")
+    })
 
 }
