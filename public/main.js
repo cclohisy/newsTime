@@ -24,7 +24,7 @@ $(function () {
             }
         ).then(function () {
             location.reload()
-        }).catch(function (err) { console.log(err) })
+        })
     })
 
     // on click of delete button... 
@@ -90,10 +90,23 @@ $(function () {
         $.ajax("/article/comments/" + articleId,
             {
                 type: "POST",
+                data:{content: comment}
                 // content: comment
             }).then(function () {
                 location.reload()
             })
 
+    })
+
+    //dlelet comment
+    $(document).on("click", ".deleteCommBtn", function(event){
+        console.log("delete comm click")
+        event.preventDefault()
+        var commId = $(this).attr("comment-id")
+        $.ajax("/comment/"+ commId,{
+            type: "DELETE"
+        }).then(function(){
+            location.reload()
+        })
     })
 })

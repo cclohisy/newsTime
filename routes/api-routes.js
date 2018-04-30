@@ -95,9 +95,7 @@ module.exports = function (app) {
 
     //post a comment to an article...
     app.post("/article/comments/:id", function (req, res) {
-        req.body = {
-            content: "comment attempt"
-        }
+       
         db.Comment.create(req.body).then(
             function (commData) {
                 return db.Article.findOneAndUpdate({
@@ -119,6 +117,13 @@ module.exports = function (app) {
             .then(function (articleData) {
                 res.json(articleData)
             }).catch(function (err) { res.json(err) })
+    })
+
+    //delelte comment 
+    app.delete("/comment/:id", function(req,res){
+        db.Comment.remove( {_id : req.params.id}).then(function(result){
+            res.send(200)
+        }).catch(function(err) {res.json(err)})
     })
 
 }

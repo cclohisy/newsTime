@@ -12,14 +12,7 @@ module.exports = function (app) {
                 var articleObj = {
                     article: articleData
                 }
-                // console.log("articleObj", articleObj.article)
-                // for (var i = 0; i < articleObj.article.length; i++) {
-                //     console.log(i + " article info________________________")
-                //     console.log("headline: " + articleObj.article[i].headline)
-                //     console.log("summary: " + articleObj.article[i].summary)
-                //     console.log("link: " + articleObj.article[i].link)
-                //     console.log("comments: " + articleObj.article[i].comments)
-                // }
+                
                 res.render("index", articleObj)
 
                 // res.json(dbArticle)
