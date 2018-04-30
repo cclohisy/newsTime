@@ -41,7 +41,8 @@ module.exports = function (app) {
                     })
             })
             //scrape was successful... send message for testing
-            res.send("stuff scrapped")
+            // res.send("stuff scrapped")
+            res.send(200)
         })
     })
 
@@ -95,11 +96,11 @@ module.exports = function (app) {
     //post a comment to an article...
     app.post("/article/comments/:id", function (req, res) {
         req.body = {
-            content: "hey"
+            content: "comment attempt"
         }
         db.Comment.create(req.body).then(
             function (commData) {
-                return db.dbArticle.findOneAndUpdate({
+                return db.Article.findOneAndUpdate({
                     _id: req.params.id
                 },
                     {
@@ -119,7 +120,5 @@ module.exports = function (app) {
                 res.json(articleData)
             }).catch(function (err) { res.json(err) })
     })
-    //create/post comment w/o article attachment
-    // app.post()
 
 }

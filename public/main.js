@@ -2,10 +2,13 @@ console.log("js linked")
 
 $(function () {
     //onclick of scrape button
-    $("#scrapeBtn").on("click", function(event){
+    $("#scrapeBtn").on("click", function (event) {
         event.preventDefault()
         //ajax call to /scrape
-        
+        $.ajax("/scrape", { type: "GET" }).then(
+            function () {
+                location.reload()
+            })
     })
     //onclick of save buttonn...
     $(".saveBtn").on("click", function (event) {
@@ -53,21 +56,23 @@ $(function () {
                 type: "GET"
             }).then(function (data) {
                 console.log(data)
-                 //display results in commentModal
+                //display results in commentModal
                 //append headline
                 $("#articleHeadline").append(data[0].headline)
+                $("#newComment").attr("article-id", data[0]._id)
                 // for loop to display exsisting comments
                 var commArray = data[0].comments
-                for(var i = 0; i< commArray.length; i++){
+                for (var i = 0; i < commArray.length; i++) {
                     var comment = commArray[i].content
                     var listItem = $("<li>")
                     listItem.addClass("list-group-item")
                     var deleteBtn = $("<button>")
                     deleteBtn.addClass("btn float-right deleteCommBtn")
+                    deleteBtn.attr("comment-id", commArray[i]._id)
                     deleteBtn.text("X")
                     listItem.append(deleteBtn)
                     listItem.append(comment)
-                    $("#commentList").append(listItem)                    
+                    $("#commentList").append(listItem)
                 }
 
             })
@@ -77,4 +82,18 @@ $(function () {
     })
 
     //on click of add note button 
+    $("#newComment").on("click", function (event) {
+        event.preventDefault()
+        var articleId = $(this).attr("article-id")
+        var comment = $("#userInput").val()
+        console.log(comment)
+        $.ajax("/article/comments/" + articleId,
+            {
+                type: "POST",
+                // content: comment
+            }).then(function () {
+                location.reload()
+            })
+
+    })
 })
