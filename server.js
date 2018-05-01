@@ -16,7 +16,7 @@ var axios = require("axios"); //- not sure what this is doing...
 var cheerio = require("cheerio");
 
 //define Port
-var PORT = 3000
+var PORT = process.env.PORT || 3000
 
 // Initialize Express
 var app = express();
